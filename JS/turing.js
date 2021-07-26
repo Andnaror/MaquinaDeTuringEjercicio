@@ -2,7 +2,8 @@ $(function() {
 
     $('#cargar').click(function(){
         id = ID;
-        if($('#cadena').val() == ""){
+        let vali=validar();
+        if($('#cadena').val() == "" || !vali){
             $(this).popover('show');
             return false;
         }else{
@@ -124,4 +125,16 @@ function SetMachine4(){
     Machines[4]['Functions'] = {
         Acceptable(state) { return state == 3 }
     };
+}
+
+function validar(){
+    let cadena= document.getElementById("cadena").value;
+    let sw=true;
+    for(i=0;i<cadena.length;i++){
+        if(cadena[i]!='a' && cadena[i]!='b'){
+            sw=false;
+            return sw;
+        }
+    }
+    return sw;
 }
