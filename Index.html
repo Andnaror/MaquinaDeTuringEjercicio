@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina de Turing</title>
+
+
+    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/vis/dist/vis.css">
+</head>
+
+<body>
+
+    <div align='center'>
+        <div class="page-header bg-transparent text-info">
+            <i class="fas fa-laptop-code"></i>
+            <span class="navbar-text text-info">
+                | Andree Mateo Narvaez Ortiz
+            </span>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="sticky-top bg-transparent">
+
+                <div class="d-flex justify-content-center mt-1 mb-5 ">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="nav nav-tabs small" role="tablist">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <div class="d-block">
+                        <div class="col-6 my-3">
+                            <div class="text-center">
+                                <img class="img-title" src="img/titulo.png" class="bg-transparent" alt="titulo">
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="text" class="form-control" placeholder="Cadena" id="cadena">
+                                <span class="input-group-mb-3">
+                                </span>
+                            </div>
+                            <button class="btn btn-info p-2 mb-2 bg-info text-white" type="button" id="cargar"
+                                data-toggle="popover1" title="Error de entrada" data-content="La cadena está vacía y/o no pertenece a A={a,b}."
+                                data-placemente="right" data-trigger="focus"><span
+                                    class="fas fa-arrow-circle-up"></span> Cargar</button>
+                            <button class="btn btn-info p-2 mb-2 bg-secundary text-white"
+                                id="info"><strong>?</strong></button>
+                        </div>
+                        <div class="col-3 my-4">
+                            <p class="lead text-light">Estado: <span id="estado">0</span></p>
+                            <div class="slidecontainer text-light">
+                                Velocidad:<br>
+                                <input type="range" min="0" max="1000" value="500" step="100" class="slider" id="rango">
+                                <p></p>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Funciones">
+                                <button class="btn btn-info p-2 mb-2 bg-info text-white" id="evaluar" content="1"><span
+                                        class="fas fa-play-circle"></span> Evaluar</button>
+                                <button class="btn btn-info p-2 mb-2 bg-light text-dark" id="evaluar" content="1"
+                                    onclick="Stop();"><span class="fas fa-stop-circle"></span> Detener</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </center>
+            </div>
+
+            <div class="tab-pane" id="tab4" role="tabpanel">
+                <center>
+                    <div class="d-inline">
+                        <div class="col-10">
+                            <table id="tabla4" class="table table-sm-hover text-center table-responsive text-light">
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </center>
+            </div>
+
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitle"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="modalText" class="lead"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="instrucciones4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitle">
+                                <h2>MAQUINA DE TURING</h2>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>Actividad:</h5>
+                            <p class="text-center">
+                                Construya una máquina de Turing que analice una cadena sobre {a,b} y cambie todas sus
+                                bes aes. La cabeza inicia sobre el primer simbolo de la izquierda y debe
+                                terminar sobre este simbolo.
+                            </p>
+                            <h5>Ejemplos:</h5>
+                            <p class="text-center">
+                                q->abbbabbab<br>
+                                Q->aaaaaaaaa<br>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-transparent">
+            <div id="mynetwork"></div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="https://kit.fontawesome.com/529971f0d9.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="JS/jquery.js"></script>
+    <script type="text/javascript" src="JS/bootstrap.js"></script>
+    <script type="text/javascript" src="JS/turing.js"></script>
+    <script type="text/javascript" src="JS/ui.js"></script>
+    <script type="text/javascript" src="node_modules/vis/dist/vis.js"></script>
+    <script type="text/javascript" src="JS/graph.js"></script>
+
+</body>
+
+</html>

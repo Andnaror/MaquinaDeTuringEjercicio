@@ -1,0 +1,11 @@
+#mynetwork {
+  position: fixed;
+  width: 30%;
+  height: 95%;
+  background-color: "none";
+}
+
+.img-title {
+  max-width: 50%;
+  max-height: 30%;
+}
